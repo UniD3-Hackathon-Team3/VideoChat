@@ -15,8 +15,10 @@ class MyApp extends StatefulWidget{
 
 class _MyAppState extends State<MyApp> {
   late final IO.Socket socket;
-  final _localRenderer = RTCVideoRenderer();
-  final _remoteRenderer = RTCVideoRenderer();
+  late RTCVideoRenderer _localRenderer;
+  late RTCVideoRenderer _remoteRenderer;
+  // final _localRenderer = RTCVideoRenderer();
+  // final _remoteRenderer = RTCVideoRenderer();
   MediaStream? _localStream;
   RTCPeerConnection? pc;
 
@@ -28,6 +30,8 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future init() async{
+    _localRenderer = RTCVideoRenderer();
+    _remoteRenderer = RTCVideoRenderer();
     await _localRenderer.initialize();
     await _remoteRenderer.initialize();
 
